@@ -619,3 +619,6 @@ mktempdir() do dir
         end
     end
 end
+
+# Issue #27550
+@test open(f->read(f, Char), `$echocmd δ`, "r") == 'δ'
