@@ -340,6 +340,9 @@ function show(io::IO, ::MIME"text/plain", X::AbstractArray)
     # checking for current :typeinfo (this could be changed in the future)
     io = IOContext(io, :typeinfo => eltype(X))
 
+    # Limit output if not specified
+    io = IOContext(io, :limit => get(io, :limit, true))
+
     # 2) show actual content
     print_array(io, X)
 end
